@@ -1,9 +1,16 @@
+import "./List.css";
+
 export default function List({ activities, isGoodWeather, onDeleteActivity }) {
   // console.log(activities);
   const listActivities = activities.map((activity) => (
-    <li key={activity.id}>
-      {activity.name}
-      <button onClick={() => onDeleteActivity(activity.id)}>x</button>
+    <li className="list-item" key={activity.id}>
+      {activity.name}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <button
+        className="delete-button"
+        onClick={() => onDeleteActivity(activity.id)}
+      >
+        x
+      </button>
     </li>
   ));
 
@@ -14,7 +21,7 @@ export default function List({ activities, isGoodWeather, onDeleteActivity }) {
           ? `The weather is awesome! Go outside and:`
           : `Bad weather outside! Here's what you can do now:`}
       </h3>
-      <ul>{listActivities}</ul>
+      <ul className="list-container">{listActivities}</ul>
     </>
   );
 }
