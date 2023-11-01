@@ -5,7 +5,7 @@ export default function Form({ onAddActivity }) {
     const data = Object.fromEntries(formData);
     onAddActivity({
       name: data.name,
-      isForGoodWeather: data.isForGoodWeather.checked,
+      isForGoodWeather: data.isForGoodWeather ? true : false,
     });
     event.target.reset();
     event.target.elements.name.focus();
