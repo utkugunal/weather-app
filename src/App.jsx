@@ -31,6 +31,10 @@ export default function App() {
       )
     );
   }
+
+  function handleDeleteActivity(id) {
+    setActivities(activities.filter((activity) => activity.id !== id));
+  }
   console.log(weather);
   console.log("Weather:", weather.isGoodWeather);
   return (
@@ -43,6 +47,7 @@ export default function App() {
       <List
         activities={activities}
         isGoodWeather={weather.isGoodWeather}
+        onDeleteActivity={handleDeleteActivity}
       ></List>
       <Form onAddActivity={handleAddActivity}></Form>
     </>
