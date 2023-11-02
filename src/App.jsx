@@ -11,7 +11,8 @@ export default function App() {
   });
 
   // const isGoodWeather = true;
-  const [weather, setWeather] = useState({});
+  const [weather, setWeather] = useState(null);
+
   useEffect(() => {
     async function startFetching() {
       const response = await fetch(
@@ -22,6 +23,10 @@ export default function App() {
     }
     startFetching();
   }, []);
+
+  if (!weather) {
+    return <h1>Loading...</h1>;
+  }
 
   function handleAddActivity(newActivity) {
     const id = uid();
@@ -37,6 +42,7 @@ export default function App() {
   }
   console.log(weather);
   console.log("Weather:", weather.isGoodWeather);
+
   return (
     <>
       <h1>
