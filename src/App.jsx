@@ -13,15 +13,24 @@ export default function App() {
   // const isGoodWeather = true;
   const [weather, setWeather] = useState(null);
 
+  async function startFetching() {
+    const response = await fetch(
+      "https://example-apis.vercel.app/api/weather/europe"
+    );
+    const weatherObject = await response.json();
+    setWeather(weatherObject);
+  }
+
   useEffect(() => {
-    async function startFetching() {
-      const response = await fetch(
-        "https://example-apis.vercel.app/api/weather/europe"
-      );
-      const weatherObject = await response.json();
-      setWeather(weatherObject);
-    }
     startFetching();
+
+    const intervalID = setInterval(() => {
+      startFetching();
+    }, 5000);
+
+    return () => {
+      clearInterval(intervalID);
+    };
   }, []);
 
   if (!weather) {
